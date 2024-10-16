@@ -1,0 +1,121 @@
+/* src/styles/styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #caf67f; /* Color de fondo de la página */
+  height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.container {
+  max-width: 800px; /* Ancho máximo del contenedor */
+  margin: 0 auto; /* Centramos el contenedor */
+  padding: 20px;
+  background-color: white; /* Color de fondo del contenedor */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(57, 78, 213, 0.1);
+  text-align: center; /* Centrar texto */
+}
+
+h1 {
+  color: #29148b; /* Color del título */
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+
+.btn-horarios, .btn-comprar {
+  background-color: #007bff; /* Color azul */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  margin: 0 10px; /* Margen entre botones */
+  cursor: pointer; /* Cambiar cursor al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.btn-horarios:hover, .btn-comprar:hover {
+  background-color: #52d52e; /* Cambiar a verde al pasar el mouse */
+}
+
+
+.schedule-container {
+  margin-top: 20px; /* Espacio superior para el contenedor de horarios */
+}
+
+.schedule-table {
+  width: 100%; /* Ancho completo */
+  border-collapse: collapse; /* Colapsar bordes */
+  margin-top: 20px; /* Espacio superior para la tabla */
+}
+
+.schedule-table th, .schedule-table td {
+  padding: 10px; /* Espaciado interno de celdas */
+  text-align: left; /* Alinear texto a la izquierda */
+  border: 1px solid #ddd; /* Borde de las celdas */
+  color: rgb(20, 10, 171);
+}
+
+.schedule-table th {
+  background-color: #29148b; /* Color de fondo para encabezados */
+  color: white; /* Color de texto para encabezados */
+}
+
+.schedule-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Color de fondo para filas pares */
+}
+
+.schedule-table tr:hover {
+  background-color: #e0e0e0; /* Color al pasar el mouse sobre una fila */
+}
+
+.btn-comprar {
+  background-color: #007bff; /* Color azul */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px 20px; /* Espaciado interno */
+  cursor: pointer; /* Cambiar cursor al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.btn-comprar:hover {
+  background-color: #f30b0b; /* Cambiar a verde al pasar el mouse */
+}
+
+.form-group {
+  display: flex; /* Usa flexbox para alinear elementos */
+  flex-direction: column; /* Coloca la etiqueta arriba del input/select */
+  margin-bottom: 15px; /* Espacio entre los formularios */
+  background-color: #f9f9f9; /* Color de fondo gris muy suave */
+  padding: 15px; /* Espaciado interno para el fondo */
+  border-radius: 5px; /* Bordes redondeados */
+  border: 1px solid #ddd; /* Borde ligero para definir el área del formulario */
+}
+
+.form-group label {
+  margin-bottom: 5px; /* Espacio entre la etiqueta y el campo de entrada */
+  color: #333; /* Color del texto de las etiquetas, oscuro para mayor contraste */
+}
+
+.form-group input, 
+.form-group select {
+  width: 100%; /* Que ocupen todo el ancho del contenedor */
+  padding: 10px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde */
+  border-radius: 5px; /* Bordes redondeados */
+  box-sizing: border-box; /* Asegura que el padding no aumente el ancho total */
+}
+
+
+
+
