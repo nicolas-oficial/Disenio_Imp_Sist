@@ -16,33 +16,35 @@ const CompraTicket = () => {
 
   const [tickets, setTickets] = useState([]); // Estado para los tickets comprados
   const [confirmation, setConfirmation] = useState('');
+  const [editingIndex, setEditingIndex] = useState(null); // Índice del ticket que se está editando
 
   const handleInputChange = (e) => {
     setTicket({ ...ticket, [e.target.name]: e.target.value });
   };
 
   const handlePurchase = (e) => {
-    e.preventDefault(); // Evitar la recarga de la página
+    e.preventDefault();
 
-    // Obtener el horario seleccionado
     const selectedSchedule = schedules.find(schedule => schedule.id === parseInt(ticket.scheduleId));
 
-    // Validar que se haya seleccionado un horario y una fecha
     if (!selectedSchedule || !ticket.selectedDate) {
       setConfirmation('Por favor, selecciona un horario y una fecha para el pasaje.');
       return;
     }
 
-    // Crear el nuevo ticket
     const newTicket = { ...ticket, schedule: selectedSchedule };
-    
-    // Agregar el nuevo ticket al estado
-    setTickets([...tickets, newTicket]);
 
-    // Mensaje de confirmación
-    setConfirmation(
-      `Ticket comprado con éxito para ${ticket.passengerName} en el horario ${selectedSchedule.departure} - ${selectedSchedule.arrival} para la fecha ${ticket.selectedDate}.`
-    );
+    // Si estamos editando un ticket existente
+    if (editingIndex !== null) {
+      const updatedTickets = [...tickets];
+      updatedTickets[editingIndex] = newTicket; // Reemplazamos el ticket modificado
+      setTickets(updatedTickets);
+      setConfirmation(`Pasaje modificado para DNI: ${ticket.passengerName}.`);
+      setEditingIndex(null); // Limpiar el índice de edición
+    } else {
+      setTickets(prevTickets => [...prevTickets, newTicket]);
+      setConfirmation(`Pasaje comprado para DNI: ${ticket.passengerName}.`);
+    }
 
     // Reiniciar el formulario
     setTicket({
@@ -51,6 +53,17 @@ const CompraTicket = () => {
       paymentMethod: 'creditCard',
       selectedDate: '',
     });
+  };
+
+  const startEditing = (index) => {
+    const ticketToEdit = tickets[index];
+    setTicket({
+      passengerName: ticketToEdit.passengerName,
+      scheduleId: ticketToEdit.schedule.id,
+      paymentMethod: ticketToEdit.paymentMethod,
+      selectedDate: ticketToEdit.selectedDate,
+    });
+    setEditingIndex(index); // Establecer el índice de edición
   };
 
   return (
@@ -105,16 +118,13 @@ const CompraTicket = () => {
             <option value="cash">Efectivo</option>
           </select>
         </div>
-        <button type="submit" className="btn-comprar">
-          Comprar Pasaje
-        </button>
+        <button type="submit" className="btn-comprar"> {editingIndex !== null ? 'Modificar Pasaje' : 'Comprar Pasaje'}</button>
       </form>
 
-      {/* Mostrar mensaje de confirmación si existe */}
       {confirmation && <p>{confirmation}</p>}
-
-      {/* Mostrar los tickets comprados */}
-      <MostrarTickets tickets={tickets} /> {/* Pasar los tickets comprados al componente */}
+      <MostrarTickets tickets={tickets} onModify={startEditing} onDelete={(index) => {
+        setTickets(tickets.filter((_, i) => i !== index));
+      }} />
     </div>
   );
 };
