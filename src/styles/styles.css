@@ -55,6 +55,14 @@ button:hover, .btn-comprar:hover {
   background-color: #10d337; /* Verde al pasar el ratón */
 }
 
+nav button {
+  background-color: #007bff; /* Color azul para el botón "Ver Horarios" */
+}
+
+nav button:hover {
+  background-color: #10d337; /* Verde al pasar el ratón */
+}
+
 /* Estilos de formulario */
 .form-group {
   display: flex;
@@ -178,5 +186,10 @@ p {
 .schedule-table button.eliminar:hover {
   background-color: darkred; /* Color rojo oscuro al pasar el mouse */
 }
+
+.form-group label {
+  color: rgb(41, 7, 140); /* Cambiar a color negro */
+}
+
 
 

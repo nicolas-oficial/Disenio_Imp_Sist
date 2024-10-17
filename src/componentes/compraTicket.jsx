@@ -10,13 +10,13 @@ const CompraTicket = () => {
   });
 
   const [schedules] = useState([
-    { id: 1, departure: '10:00 AM', arrival: '2:00 PM', destination: 'City A', date: '2024-10-04' },
-    { id: 2, departure: '3:00 PM', arrival: '7:00 PM', destination: 'City B', date: '2024-10-05' },
+    { id: 1, departure: '13:30', arrival: '16:30', destination: 'Mar del Plata' },
+    { id: 2, departure: '1:45', arrival: '7:00', destination: 'Capital Federal' },
   ]);
 
-  const [tickets, setTickets] = useState([]); // Estado para los tickets comprados
+  const [tickets, setTickets] = useState([]);
   const [confirmation, setConfirmation] = useState('');
-  const [editingIndex, setEditingIndex] = useState(null); // Índice del ticket que se está editando
+  const [editingIndex, setEditingIndex] = useState(null);
 
   const handleInputChange = (e) => {
     setTicket({ ...ticket, [e.target.name]: e.target.value });
@@ -34,19 +34,17 @@ const CompraTicket = () => {
 
     const newTicket = { ...ticket, schedule: selectedSchedule };
 
-    // Si estamos editando un ticket existente
     if (editingIndex !== null) {
       const updatedTickets = [...tickets];
-      updatedTickets[editingIndex] = newTicket; // Reemplazamos el ticket modificado
+      updatedTickets[editingIndex] = newTicket;
       setTickets(updatedTickets);
       setConfirmation(`Pasaje modificado para DNI: ${ticket.passengerName}.`);
-      setEditingIndex(null); // Limpiar el índice de edición
+      setEditingIndex(null);
     } else {
       setTickets(prevTickets => [...prevTickets, newTicket]);
       setConfirmation(`Pasaje comprado para DNI: ${ticket.passengerName}.`);
     }
 
-    // Reiniciar el formulario
     setTicket({
       passengerName: '',
       scheduleId: '',
@@ -63,7 +61,7 @@ const CompraTicket = () => {
       paymentMethod: ticketToEdit.paymentMethod,
       selectedDate: ticketToEdit.selectedDate,
     });
-    setEditingIndex(index); // Establecer el índice de edición
+    setEditingIndex(index);
   };
 
   return (
@@ -81,7 +79,7 @@ const CompraTicket = () => {
           />
         </div>
         <div className="form-group">
-          <label>Selecciona el horario:</label>
+          <label>Selecciona el destino y horario:</label>
           <select
             name="scheduleId"
             value={ticket.scheduleId}
@@ -91,7 +89,7 @@ const CompraTicket = () => {
             <option value="">-- Seleccionar --</option>
             {schedules.map((schedule) => (
               <option key={schedule.id} value={schedule.id}>
-                {`${schedule.departure} - ${schedule.arrival} | Destino: ${schedule.destination} | Fecha: ${schedule.date}`}
+                {`${schedule.departure} - ${schedule.arrival} | Destino: ${schedule.destination}`}
               </option>
             ))}
           </select>
@@ -118,7 +116,9 @@ const CompraTicket = () => {
             <option value="cash">Efectivo</option>
           </select>
         </div>
-        <button type="submit" className="btn-comprar"> {editingIndex !== null ? 'Modificar Pasaje' : 'Comprar Pasaje'}</button>
+        <button type="submit" className="btn-comprar">
+          {editingIndex !== null ? 'Modificar Pasaje' : 'Comprar Pasaje'}
+        </button>
       </form>
 
       {confirmation && <p>{confirmation}</p>}

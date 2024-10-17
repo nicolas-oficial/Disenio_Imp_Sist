@@ -27,12 +27,12 @@ const MostrarTickets = ({ tickets, onModify, onDelete }) => {
                 <td>{`${ticket.schedule.departure} - ${ticket.schedule.arrival}`}</td>
                 <td>{ticket.schedule.destination}</td>
                 <td>{ticket.selectedDate}</td>
-                <td>{ticket.paymentMethod}</td>
+                <td>{ticket.paymentMethod === 'cash' ? 'Efectivo' : ticket.paymentMethod}</td>
                 <td>
-                  <div className="acciones-container">
-                    <button className="modificar" onClick={() => onModify(index)}>Modificar</button>
-                    <button className="eliminar" onClick={() => onDelete(index)}>Eliminar</button>
-                  </div>
+                  <button onClick={() => onModify(index)}>Modificar</button>
+                  <div style={{ margin: '5px 0' }}></div>
+                  <button className="eliminar" onClick={() => onDelete(index)}>Eliminar</button>
+
                 </td>
               </tr>
             ))
