@@ -33,6 +33,18 @@ const CompraTicket = () => {
       return;
     }
 
+    // Verificar si ya existe un pasaje con el mismo DNI, fecha y destino
+    const existingTicket = tickets.find(t => 
+      t.passengerName === ticket.passengerName &&
+      t.selectedDate === ticket.selectedDate &&
+      t.schedule.id === selectedSchedule.id
+    );
+
+    if (existingTicket) {
+      setConfirmation('Ya existe un pasaje para este DNI en la misma fecha y destino.');
+      return;
+    }
+
     const newTicket = { ...ticket, schedule: selectedSchedule };
 
     if (editingIndex !== null) {
