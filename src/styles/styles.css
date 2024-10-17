@@ -3,7 +3,10 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #ebd046; /* Fondo claro y suave */
+  background-image: url('https://revistamagazzine.com/wp-content/uploads/2020/12/33-autobuses-Scania-para-Estrella-Blanca-fa.jpg');
+  background-size: cover; /* Ajusta la imagen para cubrir toda la pantalla */
+  background-position: center; 
+  background-repeat: no-repeat; 
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -15,7 +18,7 @@ body {
   max-width: 800px;
   margin: 20px;
   padding: 20px;
-  background-color: #fff;
+  background-color: #f5f18d;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -127,6 +130,11 @@ p {
   margin-top: 10px;
 }
 
+.button-spacing {
+  margin: 5px 0; /* Espacio entre los botones */
+}
+
+
 /* Estilo para el botón 'Comprar Pasaje' */
 .btn-comprar {
   background-color: #007bff; /* Color azul */
@@ -190,6 +198,3 @@ p {
 .form-group label {
   color: rgb(41, 7, 140); /* Cambiar a color negro */
 }
-
-
-

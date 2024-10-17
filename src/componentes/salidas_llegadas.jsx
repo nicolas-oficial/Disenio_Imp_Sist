@@ -3,6 +3,7 @@ import React from 'react';
 const fakeSchedules = [
   { id: 1, departure: '13:30', arrival: '16:30', destination: 'Mar del Plata', date: new Date().toISOString().split('T')[0] }, // Fecha actual
   { id: 2, departure: '1:45', arrival: '7:00', destination: 'Capital Federal', date: new Date().toISOString().split('T')[0] },
+  { id: 3, departure: '11:15', arrival: '14:30', destination: 'Necochea', date: new Date().toISOString().split('T')[0] },
 ];
 
 const SalidasLlegadas = () => {

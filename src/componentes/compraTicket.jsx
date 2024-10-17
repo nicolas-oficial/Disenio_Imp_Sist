@@ -12,6 +12,7 @@ const CompraTicket = () => {
   const [schedules] = useState([
     { id: 1, departure: '13:30', arrival: '16:30', destination: 'Mar del Plata' },
     { id: 2, departure: '1:45', arrival: '7:00', destination: 'Capital Federal' },
+    { id: 3, departure: '11:15', arrival: '14:30', destination: 'Necochea' },
   ]);
 
   const [tickets, setTickets] = useState([]);
