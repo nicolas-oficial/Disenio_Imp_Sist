@@ -7,7 +7,7 @@ const MostrarTickets = ({ tickets, onModify, onDelete }) => {
       <table className="schedule-table">
         <thead>
           <tr>
-            <th>Nombre</th>
+            <th>Pasajero DNI</th>
             <th>Horario</th>
             <th>Destino</th>
             <th>Fecha</th>
