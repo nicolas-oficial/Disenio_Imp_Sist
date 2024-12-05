@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import MostrarTickets from './mostrarTicket';
+import TicketForm from './ticketForm';
+import TicketList from './ticketList';
+import ConfirmationMessage from './confirmationMessage';
 
 const CompraTicket = () => {
   const [ticket, setTicket] = useState({
@@ -33,7 +35,6 @@ const CompraTicket = () => {
       return;
     }
 
-    // Verificar si ya existe un pasaje con el mismo DNI, fecha y destino
     const existingTicket = tickets.find(t => 
       t.passengerName === ticket.passengerName &&
       t.selectedDate === ticket.selectedDate &&
@@ -80,64 +81,19 @@ const CompraTicket = () => {
   return (
     <div>
       <h1>Compra de Pasajes</h1>
-      <form onSubmit={handlePurchase}>
-        <div className="form-group">
-          <label>DNI de pasajero:</label>
-          <input
-            type="text"
-            name="passengerName"
-            value={ticket.passengerName}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Selecciona el destino y horario:</label>
-          <select
-            name="scheduleId"
-            value={ticket.scheduleId}
-            onChange={handleInputChange}
-            required
-          >
-            <option value="">-- Seleccionar --</option>
-            {schedules.map((schedule) => (
-              <option key={schedule.id} value={schedule.id}>
-                {`${schedule.departure} - ${schedule.arrival} | Destino: ${schedule.destination}`}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="form-group">
-          <label>Selecciona la fecha del pasaje:</label>
-          <input
-            type="date"
-            name="selectedDate"
-            value={ticket.selectedDate}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Método de pago:</label>
-          <select
-            name="paymentMethod"
-            value={ticket.paymentMethod}
-            onChange={handleInputChange}
-          >
-            <option value="creditCard">Tarjeta de crédito</option>
-            <option value="debitCard">Tarjeta de débito</option>
-            <option value="cash">Efectivo</option>
-          </select>
-        </div>
-        <button type="submit" className="btn-comprar">
-          {editingIndex !== null ? 'Modificar Pasaje' : 'Comprar Pasaje'}
-        </button>
-      </form>
-
-      {confirmation && <p>{confirmation}</p>}
-      <MostrarTickets tickets={tickets} onModify={startEditing} onDelete={(index) => {
-        setTickets(tickets.filter((_, i) => i !== index));
-      }} />
+      <TicketForm
+        ticket={ticket}
+        schedules={schedules}
+        editingIndex={editingIndex}
+        onInputChange={handleInputChange}
+        onSubmit={handlePurchase}
+      />
+      <ConfirmationMessage message={confirmation} />
+      <TicketList
+        tickets={tickets}
+        onModify={startEditing}
+        onDelete={(index) => setTickets(tickets.filter((_, i) => i !== index))}
+      />
     </div>
   );
 };
